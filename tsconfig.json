@@ -8,6 +8,12 @@
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noUnusedParameters": true,
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "esnext",
+      "dom"
+    ]
   },
   "exclude": [
     "node_modules"

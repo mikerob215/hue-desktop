@@ -1,20 +1,49 @@
 {
   "name": "hue-desktop",
   "version": "1.0.0",
-  "main": "dist/bundle.js",
+  "main": "dist/main-bundle.js",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server & electron ."
+  },
   "devDependencies": {
+    "@types/jest": "^21.1.6",
+    "@types/ramda": "^0.25.6",
+    "@types/react": "^16.0.25",
+    "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.13",
+    "@types/recompose": "^0.24.3",
     "electron": "^1.7.9",
     "html-webpack-plugin": "^2.30.1",
+    "jest": "^21.2.1",
+    "ts-jest": "^21.2.3",
     "ts-loader": "^3.1.1",
     "typescript": "^2.6.1",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.4"
   },
   "dependencies": {
-    "@types/react": "^16.0.25",
-    "@types/react-dom": "^16.0.3",
+    "axios": "^0.17.1",
+    "ramda": "^0.25.0",
     "react": "^16.1.1",
-    "react-dom": "^16.1.1"
+    "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
+    "recompose": "^0.26.0",
+    "redux": "^3.7.2",
+    "redux-observable": "^0.17.0",
+    "rxjs": "^5.5.2"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
   }
 }
