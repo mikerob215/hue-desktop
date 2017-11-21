@@ -1,9 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import HubsReducer, {HubsEpic} from "../state/hubs";
+import HubsReducer from "../state/hubs/reducer";
 import {combineEpics, createEpicMiddleware} from "redux-observable";
+import {HubsEpics} from "../state/hubs/epics";
 
 const epics = combineEpics(
-    HubsEpic
+    ...Object.values(HubsEpics),
 );
 
 const reducers = combineReducers({

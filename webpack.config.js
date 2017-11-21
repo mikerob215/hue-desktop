@@ -3,7 +3,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: './src/index.ts',
+        main: './src/main.ts',
         app: './src/app.tsx',
     },
     output: {
@@ -12,7 +12,7 @@ module.exports = {
     },
     devtool: 'source-map',
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".json"],
+        extensions: ['.ts', '.tsx', '.js', '.json'],
         modules: [
             path.join(__dirname, 'app'),
             'node_modules',
