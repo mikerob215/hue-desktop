@@ -4,22 +4,18 @@ import {ComponentEnhancer, compose, lifecycle, setDisplayName,} from 'recompose'
 import {connect, Provider} from "react-redux";
 import store from "./store/store";
 import {Hub} from "./lib/hue";
-import {fetchHubsRequested} from "./state/hubs";
 import * as R from 'ramda';
-
-const mapStateToProps = ({Hubs: {hubs, isHubsLoading}}: { Hubs: { hubs: any, isHubsLoading: any } }) => ({
-    hubs,
-    isHubsLoading
-});
+import {HubsActionCreators} from "./state/hubs/action-creators";
 
 const enhance = compose(
     setDisplayName('App'),
 );
 
+const mapStateToProps = R.compose(R.pick(['hubs', 'isHubsLoading']), R.prop('Hubs'));
+
 const enhance2: ComponentEnhancer<{ hubs: Hub[], isHubsLoading: boolean, fetchHubsRequested: Function }, {}> = compose(
-    connect(mapStateToProps, {fetchHubsRequested}),
+    connect(mapStateToProps, {...HubsActionCreators}),
     setDisplayName('SubComponent'),
-    // withProps(['hubs', 'isLoadingHubs']),
     lifecycle<{ fetchHubsRequested: Function }, {}>(
         {
             componentWillMount() {
@@ -29,13 +25,11 @@ const enhance2: ComponentEnhancer<{ hubs: Hub[], isHubsLoading: boolean, fetchHu
     ),
 );
 
-const subcomponent: React.SFC<{ hubs: Hub[], isHubsLoading: boolean }> = (props) => {
-    console.log(props);
-    return <div>
+const subcomponent: React.SFC<{ hubs: Hub[], isHubsLoading: boolean }> = (props) =>
+    <div>
         {props.isHubsLoading ? 'LOADING.....' : null}
-        {R.compose(R.not, R.empty)(props.hubs) ? 'hubs' : null}
+        {R.compose(R.not, R.isEmpty)(props.hubs) ? 'Hubs loaded' : null}
     </div>;
-};
 
 const SubCmp = enhance2(subcomponent);
 
