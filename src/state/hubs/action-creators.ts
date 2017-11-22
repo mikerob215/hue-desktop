@@ -1,23 +1,23 @@
-import {Hub} from "../../lib/hue";
-import {HubActionTypes} from "./action-types";
+import {Hub} from '../../lib/hue';
+import {HubActionTypes} from './action-types';
 
 export namespace HubsActionCreators {
     export type HubsAction =
         FetchHubsRequested |
         FetchHubsSuccessful |
-        FetchHubsFailed
+        FetchHubsFailed;
 
     export interface FetchHubsSuccessful {
-        type: HubActionTypes.FETCH_HUBS_SUCCESSFUL,
-        hubs: Hub[]
+        type: HubActionTypes.FETCH_HUBS_SUCCESSFUL;
+        hubs: Hub[];
     }
 
     export interface FetchHubsRequested {
-        type: HubActionTypes.FETCH_HUBS_REQUESTED,
+        type: HubActionTypes.FETCH_HUBS_REQUESTED;
     }
 
     export interface FetchHubsFailed {
-        type: HubActionTypes.FETCH_HUBS_FAILED,
+        type: HubActionTypes.FETCH_HUBS_FAILED;
     }
 
     export const fetchHubsRequested = () =>
@@ -34,5 +34,5 @@ export namespace HubsActionCreators {
     export const fetchHubsFailed = () =>
         ({
             type: HubActionTypes.FETCH_HUBS_FAILED,
-        })
+        });
 }
