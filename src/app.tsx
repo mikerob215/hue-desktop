@@ -1,11 +1,11 @@
+import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {ComponentEnhancer, compose, lifecycle, setDisplayName,} from 'recompose';
-import {connect, Provider} from "react-redux";
-import store from "./store/store";
-import {Hub} from "./lib/hue";
-import * as R from 'ramda';
-import {HubsActionCreators} from "./state/hubs/action-creators";
+import {connect, Provider} from 'react-redux';
+import {ComponentEnhancer, compose, lifecycle, setDisplayName} from 'recompose';
+import {Hub} from './lib/hue';
+import {HubsActionCreators} from './state/hubs/action-creators';
+import store from './store/store';
 
 const enhance = compose(
     setDisplayName('App'),
@@ -19,14 +19,14 @@ const enhance2: ComponentEnhancer<{ hubs: Hub[], isHubsLoading: boolean, fetchHu
     lifecycle<{ fetchHubsRequested: Function }, {}>(
         {
             componentWillMount() {
-                this.props.fetchHubsRequested()
-            }
-        }
+                this.props.fetchHubsRequested();
+            },
+        },
     ),
 );
 
 const subcomponent: React.SFC<{ hubs: Hub[], isHubsLoading: boolean }> = (props) =>
-    <div>
+    <div style={{height: '100%'}}>
         {props.isHubsLoading ? 'LOADING.....' : null}
         {R.compose(R.not, R.isEmpty)(props.hubs) ? 'Hubs loaded' : null}
     </div>;
