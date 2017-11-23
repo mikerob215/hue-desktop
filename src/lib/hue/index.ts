@@ -1,19 +1,16 @@
-import axios from 'axios';
-import * as R from 'ramda';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
-import "rxjs/add/operator/map";
-
-const extractData = R.prop('data');
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/dom/ajax';
 
 export interface Hub {
-    internalipaddress: string,
-    id: string
+    internalipaddress: string;
+    id: string;
 }
 
+const discoverURL = 'https://www.meethue.com/api/nupnp/';
 const discover: () => Observable<Hub[]> = () =>
-    Observable.fromPromise(axios.get(`https://www.meethue.com/api/nupnp/`))
-        .map(extractData);
+    Observable.fromPromise(fetch(discoverURL).then(res => res.json()));
 
 const Hue: {
     discover(): Observable<Hub[]>,

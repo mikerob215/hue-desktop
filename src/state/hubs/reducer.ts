@@ -1,5 +1,5 @@
-import {createReducer} from '../../lib/redux-helpers';
-import {Hub} from '../../lib/hue';
+import {createReducer} from 'lib/redux-helpers';
+import {Hub} from 'lib/hue';
 import {HubActionTypes} from './action-types';
 import {HubsActionCreators} from './action-creators';
 import 'rxjs/add/operator/filter';
@@ -23,11 +23,17 @@ const HubsReducer = createReducer(initialState, {
             isHubsLoading: true,
         };
     },
-    [HubActionTypes.FETCH_HUBS_SUCCESSFUL](state: HubState, action: HubsActionCreators.FetchHubsSuccessful): HubState {
+    [HubActionTypes.FETCH_HUBS_SUCCESSFUL](state: HubState, {hubs}: HubsActionCreators.FetchHubsSuccessful): HubState {
         return {
             ...state,
             isHubsLoading: false,
-            hubs: action.hubs,
+            hubs,
+        };
+    },
+    [HubActionTypes.FETCH_HUBS_FAILED](state: HubState) {
+        return {
+            ...state,
+            isHubsLoadingHubs: false
         };
     }
 });

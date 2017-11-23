@@ -20,7 +20,7 @@ export namespace HubsActionCreators {
         type: HubActionTypes.FETCH_HUBS_FAILED;
     }
 
-    export const fetchHubsRequested = () =>
+    export const fetchHubsRequested = (): FetchHubsRequested =>
         ({
             type: HubActionTypes.FETCH_HUBS_REQUESTED
         });
@@ -31,7 +31,7 @@ export namespace HubsActionCreators {
             hubs
         });
 
-    export const fetchHubsFailed = () =>
+    export const fetchHubsFailed = (): FetchHubsFailed =>
         ({
             type: HubActionTypes.FETCH_HUBS_FAILED,
         });

@@ -2,10 +2,10 @@ import * as R from 'ramda';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {connect, Provider} from 'react-redux';
-import {ComponentEnhancer, compose, lifecycle, setDisplayName} from 'recompose';
+import {ComponentEnhancer, compose, lifecycle, pure, setDisplayName} from 'recompose';
 import {Hub} from './lib/hue';
 import {HubsActionCreators} from './state/hubs/action-creators';
-import store from './store/store';
+import configureStore from './store/store';
 
 const enhance = compose(
     setDisplayName('App'),
@@ -16,6 +16,7 @@ const mapStateToProps = R.compose(R.pick(['hubs', 'isHubsLoading']), R.prop('Hub
 const enhance2: ComponentEnhancer<{ hubs: Hub[], isHubsLoading: boolean, fetchHubsRequested: Function }, {}> = compose(
     connect(mapStateToProps, {...HubsActionCreators}),
     setDisplayName('SubComponent'),
+    pure,
     lifecycle<{ fetchHubsRequested: Function }, {}>(
         {
             componentWillMount() {
@@ -32,7 +33,7 @@ const subcomponent: React.SFC<{ hubs: Hub[], isHubsLoading: boolean }> = (props)
     </div>;
 
 const SubCmp = enhance2(subcomponent);
-
+const store = configureStore();
 const component: React.SFC = () =>
     <Provider store={store}>
         <SubCmp/>

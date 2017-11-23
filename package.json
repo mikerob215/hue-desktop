@@ -4,18 +4,23 @@
   "main": "dist/main-bundle.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server & electron ."
+    "start": "webpack-dev-server & electron .",
+    "test": "jest"
   },
   "devDependencies": {
+    "@types/fetch-mock": "^5.12.2",
     "@types/jest": "^21.1.6",
     "@types/ramda": "^0.25.6",
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
     "@types/react-redux": "^5.0.13",
     "@types/recompose": "^0.24.3",
+    "@types/redux-mock-store": "^0.0.12",
     "electron": "^1.7.9",
+    "fetch-mock": "^5.13.1",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^21.2.1",
+    "redux-mock-store": "^1.3.0",
     "ts-jest": "^21.2.3",
     "ts-loader": "^3.1.1",
     "tslint": "^5.8.0",

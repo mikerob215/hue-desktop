@@ -10,6 +10,7 @@
     "noUnusedParameters": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src",
     "lib": [
       "esnext",
       "dom"

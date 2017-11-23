@@ -5,9 +5,11 @@ import {HubActionTypes} from './action-types';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/map';
 
 export namespace HubsEpics {
-    export const FetchHubsEpic = (action$: ActionsObservable<HubsActionCreators.HubsAction>) =>
+    export const fetchHubsEpic = (action$: ActionsObservable<HubsActionCreators.HubsAction>) =>
         action$.ofType(HubActionTypes.FETCH_HUBS_REQUESTED)
             .mergeMap(() =>
                 Hue.discover()
