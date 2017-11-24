@@ -1,4 +1,4 @@
-import {Hub} from '../../lib/hue';
+import {Hub} from 'lib';
 import {HubActionTypes} from './action-types';
 
 export namespace HubsActionCreators {

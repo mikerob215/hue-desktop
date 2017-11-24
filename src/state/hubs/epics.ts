@@ -1,5 +1,5 @@
 import {ActionsObservable} from 'redux-observable';
-import Hue from '../../lib/hue';
+import Hue from 'lib/hue/hue';
 import {HubsActionCreators} from './action-creators';
 import {HubActionTypes} from './action-types';
 import {Observable} from 'rxjs/Observable';

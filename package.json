@@ -44,6 +44,10 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
+    "moduleDirectories": [
+      "node_modules",
+      "<rootDir>/src"
+    ],
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleFileExtensions": [
       "ts",

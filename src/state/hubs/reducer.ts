@@ -1,5 +1,5 @@
-import {createReducer} from 'lib/redux-helpers';
-import {Hub} from 'lib/hue';
+import {createReducer} from 'lib/redux-helpers/create-reducer';
+import {Hub} from 'lib/hue/hue';
 import {HubActionTypes} from './action-types';
 import {HubsActionCreators} from './action-creators';
 import 'rxjs/add/operator/filter';

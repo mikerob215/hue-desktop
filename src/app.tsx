@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {connect, Provider} from 'react-redux';
 import {ComponentEnhancer, compose, lifecycle, pure, setDisplayName} from 'recompose';
-import {Hub} from './lib/hue';
+import {Hub} from 'lib';
 import {HubsActionCreators} from './state/hubs/action-creators';
 import configureStore from './store/store';
 
