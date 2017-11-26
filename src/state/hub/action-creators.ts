@@ -13,6 +13,7 @@ export namespace HubActionCreators {
 
     export interface ConnectHubSuccessful {
         type: HubActionTypes.CONNECT_HUB_SUCCESSFUL;
+        payload: { username: string };
     }
 
     export interface ConnectHubFailed {
@@ -24,9 +25,10 @@ export namespace HubActionCreators {
         payload: {id, ip},
     });
 
-    export const connectHubSuccessful = (): ConnectHubSuccessful =>
+    export const connectHubSuccessful = (response: any): ConnectHubSuccessful =>
         ({
             type: HubActionTypes.CONNECT_HUB_SUCCESSFUL,
+            payload: {username: response[0].success.username},
         });
 
     export const connectHubFailed = (): ConnectHubFailed => {

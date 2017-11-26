@@ -3,6 +3,7 @@ import HubsReducer from '../state/hubs/reducer';
 import {combineEpics, createEpicMiddleware} from 'redux-observable';
 import {HubsEpics} from '../state/hubs/epics';
 import {HubEpic} from '../state/hub/epic';
+import {Hubreducer} from '../state/hub/reducer';
 
 const configureStore = () => {
     const epics: any = combineEpics(
@@ -13,7 +14,8 @@ const configureStore = () => {
     );
 
     const reducers = combineReducers({
-        Hubs: HubsReducer
+        Hubs: HubsReducer,
+        Hub: Hubreducer
     });
 
     const epicMiddleware = createEpicMiddleware(epics);
