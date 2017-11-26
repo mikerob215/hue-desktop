@@ -1,11 +1,13 @@
-import {ActionsObservable} from 'redux-observable';
+import Hue from 'lib/hue/hue';
 import {HubActionTypes} from './action-types';
 import {HubActionCreators} from './action-creators';
-import Hue from 'lib/hue/hue';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
+import {ActionsObservable} from 'redux-observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/retryWhen';
+import 'rxjs/add/operator/delay';
 
 const RECONNECT_DELAY = 2000;
 export namespace HubEpic {
