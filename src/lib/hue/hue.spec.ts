@@ -7,7 +7,7 @@ describe('Hue', () => {
         fetchMock.restore();
     });
 
-    describe('Hue.Discover', () => {
+    describe('Hue.discover()', () => {
         it('it should attempt to discover hubs', () => {
             const expectedResponse = '[ {internalipaddress: \'127.0.0.1\', id: \'somehueid\'} ]';
             fetchMock.getOnce('https://www.meethue.com/api/nupnp/', expectedResponse);

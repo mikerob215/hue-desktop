@@ -1,5 +1,5 @@
 import {Hub} from 'lib';
-import {HubActionTypes} from './action-types';
+import {HubsActionTypes} from './action-types';
 
 export namespace HubsActionCreators {
     export type HubsAction =
@@ -8,31 +8,31 @@ export namespace HubsActionCreators {
         FetchHubsFailed;
 
     export interface FetchHubsSuccessful {
-        type: HubActionTypes.FETCH_HUBS_SUCCESSFUL;
+        type: HubsActionTypes.FETCH_HUBS_SUCCESSFUL;
         hubs: Hub[];
     }
 
     export interface FetchHubsRequested {
-        type: HubActionTypes.FETCH_HUBS_REQUESTED;
+        type: HubsActionTypes.FETCH_HUBS_REQUESTED;
     }
 
     export interface FetchHubsFailed {
-        type: HubActionTypes.FETCH_HUBS_FAILED;
+        type: HubsActionTypes.FETCH_HUBS_FAILED;
     }
 
     export const fetchHubsRequested = (): FetchHubsRequested =>
         ({
-            type: HubActionTypes.FETCH_HUBS_REQUESTED
+            type: HubsActionTypes.FETCH_HUBS_REQUESTED
         });
 
     export const fetchHubsSuccessful = (hubs: Hub[]): FetchHubsSuccessful =>
         ({
-            type: HubActionTypes.FETCH_HUBS_SUCCESSFUL,
+            type: HubsActionTypes.FETCH_HUBS_SUCCESSFUL,
             hubs
         });
 
     export const fetchHubsFailed = (): FetchHubsFailed =>
         ({
-            type: HubActionTypes.FETCH_HUBS_FAILED,
+            type: HubsActionTypes.FETCH_HUBS_FAILED,
         });
 }
