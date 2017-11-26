@@ -18,5 +18,11 @@ export const Hubreducer = createReducer({}, {
             ...state,
             isConnectingToHub: false
         };
+    },
+    [HubActionTypes.CONNECT_HUB_FAILED](state: HubState, _action: HubActionCreators.ConnectHubFailed) {
+        return {
+            ...state,
+            isConnectingToHub: false
+        };
     }
 });
