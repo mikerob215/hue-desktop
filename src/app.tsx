@@ -8,7 +8,6 @@ import {HubsActionCreators} from './state/hubs/action-creators';
 import configureStore from './store/store';
 import {HubActionCreators} from './state/hub/action-creators';
 
-
 const enhance = compose(
     setDisplayName('App'),
 );
