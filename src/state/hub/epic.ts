@@ -8,15 +8,24 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/retryWhen';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/observable/range';
+import 'rxjs/add/operator/zip';
+import 'rxjs/add/observable/timer';
 
-const RECONNECT_DELAY = 2000;
 export namespace HubEpic {
+    const RECONNECT_DELAY = 2000;
+    const MAX_RETRIES = 15;
+
     export const connectHubEpic = (action$: ActionsObservable<HubActionCreators.ConnectHubRequested>) => {
         return action$.ofType(HubActionTypes.CONNECT_HUB_REQUESTED)
             .mergeMap((action) =>
                 Hue.connect(action.payload.ip)
                     .map(HubActionCreators.connectHubSuccessful)
-                    .retryWhen(errors => errors.delay(RECONNECT_DELAY))
+                    .retryWhen(errors =>
+                        Observable.range(0, MAX_RETRIES)
+                            .zip(errors, (i, err) => ({i, err}))
+                            .mergeMap(({i, err}) =>
+                                i === MAX_RETRIES ? Observable.throw(err) : Observable.timer(RECONNECT_DELAY)))
                     .catch(() => Observable.of(HubActionCreators.connectHubFailed()))
             );
     };

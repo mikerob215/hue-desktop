@@ -1,9 +1,6 @@
 import {Observable} from 'rxjs/Observable';
 import {fetchUtil} from 'lib';
 import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/defer';
 
 export interface Hub {
@@ -11,13 +8,13 @@ export interface Hub {
     id: string;
 }
 
-const discoverURL = 'https://www.meethue.com/api/nupnp/';
+const DISCOVER_URL = 'https://www.meethue.com/api/nupnp/';
 /**
  * @name discover
  * @return {Observable<Hub[]>}
  */
 const discover: () => Observable<Hub[]> = () =>
-    Observable.fromPromise(fetchUtil.get<Hub[]>(discoverURL));
+    Observable.fromPromise(fetchUtil.get<Hub[]>(DISCOVER_URL));
 
 /**
  * @name connect
@@ -27,16 +24,12 @@ const discover: () => Observable<Hub[]> = () =>
 const connect: (ip: string) => Observable<any> = (ip: string) =>
     Observable.defer(() =>
         fetchUtil.post<any>(`http://${ip}/api`, {body: {'devicetype': 'desktop_hue#something'}})
-            .then(res => {
-                if (res[0].error) return Promise.reject(new Error('unauthorized'));
-                return res;
-            }));
+            .then(res =>
+                res[0].error ? Promise.reject(new Error('unauthorized')) : res));
 
 interface Hue {
     activeHub: Hub;
-
     discover(): Observable<Hub[]>;
-
     connect(ip: string): Observable<any>;
 }
 
