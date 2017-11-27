@@ -4,9 +4,15 @@ import {HubActionCreators} from './action-creators';
 
 interface HubState {
     isConnectingToHub: boolean;
+    username: string;
 }
 
-export const Hubreducer = createReducer({}, {
+const initialState: HubState = {
+    isConnectingToHub: false,
+    username: null,
+};
+
+export const HubReducer = createReducer(initialState, {
     [HubActionTypes.CONNECT_HUB_REQUESTED](state: HubState, _action: HubActionTypes.CONNECT_HUB_REQUESTED) {
         return {
             ...state,
