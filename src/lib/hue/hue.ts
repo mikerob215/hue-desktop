@@ -16,6 +16,20 @@ const DISCOVER_URL = 'https://www.meethue.com/api/nupnp/';
 const discover: () => Observable<Hub[]> = () =>
     Observable.fromPromise(fetchUtil.get<Hub[]>(DISCOVER_URL));
 
+export interface ConnectSuccess {
+    username: string;
+}
+
+export interface ConnectError {
+    error: {
+        type: number
+        address: string;
+        description: string;
+    };
+
+}
+
+type ConnectResponse = ConnectSuccess | ConnectError;
 /**
  * @name connect
  * @param {string} ip
@@ -23,14 +37,15 @@ const discover: () => Observable<Hub[]> = () =>
  */
 const connect: (ip: string) => Observable<any> = (ip: string) =>
     Observable.defer(() =>
-        fetchUtil.post<any>(`http://${ip}/api`, {body: {'devicetype': 'desktop_hue#something'}})
-            .then(res =>
+        fetchUtil.post<ConnectResponse>(`http://${ip}/api`, {body: {'devicetype': 'desktop_hue#something'}})
+            .then((res: any) =>
                 res[0].error ? Promise.reject(new Error('unauthorized')) : res));
 
 interface Hue {
     activeHub: Hub;
     discover(): Observable<Hub[]>;
-    connect(ip: string): Observable<any>;
+
+    connect(ip: string): Observable<ConnectResponse>;
 }
 
 const Hue: Hue = {
