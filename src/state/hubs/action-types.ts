@@ -1,4 +1,4 @@
-export enum HubActionTypes {
+export enum HubsActionTypes {
     FETCH_HUBS_REQUESTED = 'FETCH_HUBS_REQUESTED',
     FETCH_HUBS_SUCCESSFUL = 'FETCH_HUBS_SUCCESSFUL',
     FETCH_HUBS_FAILED = 'FETCH_HUBS_FAILED',
