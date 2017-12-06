@@ -1,5 +1,7 @@
-import {Hub} from 'lib';
 import {HubsActionTypes} from './action-types';
+import {Hue} from '../../lib';
+import {Action} from 'redux';
+import Hub = Hue.Hub;
 
 export namespace HubsActionCreators {
     export type HubsAction =
@@ -7,16 +9,16 @@ export namespace HubsActionCreators {
         FetchHubsSuccessful |
         FetchHubsFailed;
 
-    export interface FetchHubsSuccessful {
+    export interface FetchHubsSuccessful extends Action {
         type: HubsActionTypes.FETCH_HUBS_SUCCESSFUL;
         hubs: Hub[];
     }
 
-    export interface FetchHubsRequested {
+    export interface FetchHubsRequested extends Action {
         type: HubsActionTypes.FETCH_HUBS_REQUESTED;
     }
 
-    export interface FetchHubsFailed {
+    export interface FetchHubsFailed extends Action {
         type: HubsActionTypes.FETCH_HUBS_FAILED;
     }
 

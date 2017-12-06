@@ -1,40 +1,40 @@
 import {createReducer} from 'lib/redux-helpers/create-reducer';
-import {Hub} from 'lib/hue/hue';
 import {HubsActionTypes} from './action-types';
 import {HubsActionCreators} from './action-creators';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import {Hue} from '../../lib';
+import Hub = Hue.Hub;
 
-interface HubState {
+export interface HubsState {
     hubs: Hub[];
     isHubsLoading: boolean;
 }
 
-const initialState: HubState = {
+export const initialState: HubsState = {
     hubs: [],
     isHubsLoading: false,
 };
 
 const HubsReducer = createReducer(initialState, {
-    [HubsActionTypes.FETCH_HUBS_REQUESTED](state: HubState): HubState {
+    [HubsActionTypes.FETCH_HUBS_REQUESTED](state: HubsState): HubsState {
         return {
             ...state,
             isHubsLoading: true,
         };
     },
-    [HubsActionTypes.FETCH_HUBS_SUCCESSFUL](state: HubState, {hubs}: HubsActionCreators.FetchHubsSuccessful): HubState {
-        console.log(hubs);
+    [HubsActionTypes.FETCH_HUBS_SUCCESSFUL](state: HubsState, {hubs}: HubsActionCreators.FetchHubsSuccessful): HubsState {
         return {
             ...state,
             isHubsLoading: false,
             hubs,
         };
     },
-    [HubsActionTypes.FETCH_HUBS_FAILED](state: HubState) {
+    [HubsActionTypes.FETCH_HUBS_FAILED](state: HubsState): HubsState {
         return {
             ...state,
-            isHubsLoadingHubs: false
+            isHubsLoading: false,
         };
     }
 });

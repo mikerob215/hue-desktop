@@ -1,0 +1,17 @@
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.app-shell {
+  $this: &;
+  position: relative;
+  height: 100%;
+}

@@ -1,4 +1,5 @@
 import {HubActionTypes} from './action-types';
+import {Action} from 'redux';
 
 export namespace HubActionCreators {
     export type HubAction =
@@ -6,17 +7,17 @@ export namespace HubActionCreators {
         ConnectHubRequested |
         ConnectHubFailed;
 
-    export interface ConnectHubRequested {
+    export interface ConnectHubRequested extends Action {
         type: HubActionTypes.CONNECT_HUB_REQUESTED;
         payload: { ip: string, id: string };
     }
 
-    export interface ConnectHubSuccessful {
+    export interface ConnectHubSuccessful extends Action {
         type: HubActionTypes.CONNECT_HUB_SUCCESSFUL;
         payload: { username: string };
     }
 
-    export interface ConnectHubFailed {
+    export interface ConnectHubFailed extends Action {
         type: HubActionTypes.CONNECT_HUB_FAILED;
     }
 

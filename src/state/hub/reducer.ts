@@ -2,12 +2,12 @@ import {createReducer} from 'lib';
 import {HubActionTypes} from './action-types';
 import {HubActionCreators} from './action-creators';
 
-interface HubState {
+export interface HubState {
     isConnectingToHub: boolean;
     username: string;
 }
 
-const initialState: HubState = {
+export const initialState: HubState = {
     isConnectingToHub: false,
     username: null,
 };

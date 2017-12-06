@@ -12,7 +12,7 @@ describe('Hubs Action Creators', () => {
         fetchMock.restore();
     });
 
-    it(`creates ${HubsActionTypes.FETCH_HUBS_SUCCESSFUL.toString()} when fetching hubs is finished`, done => {
+    it(`creates ${HubsActionTypes.FETCH_HUBS_SUCCESSFUL.toString()} when fetching hubs is finished`, () => {
         const expectedResponse = [{internalipaddress: '127.0.0.1', id: 'somehueid'}];
         fetchMock.getOnce('https://www.meethue.com/api/nupnp/', expectedResponse);
         HubsEpics.fetchHubsEpic(action$)
@@ -20,21 +20,16 @@ describe('Hubs Action Creators', () => {
                 (data: HubsActionCreators.FetchHubsSuccessful) => {
                     expect(data.type).toEqual(HubsActionTypes.FETCH_HUBS_SUCCESSFUL);
                     expect(data.hubs).toEqual([{internalipaddress: '127.0.0.1', id: 'somehueid'}]);
-
-                    done();
                 }
             );
     });
 
-    it(`should handle errors`, done => {
+    it(`should handle errors`, () => {
         fetchMock.getOnce('https://www.meethue.com/api/nupnp/', {throws: new Error('404')});
 
         HubsEpics.fetchHubsEpic(action$)
-            .subscribe((data: HubsActionCreators.FetchHubsFailed) => {
-                expect(data.type).toEqual(HubsActionTypes.FETCH_HUBS_FAILED);
-
-                    done();
-                }
+            .subscribe((data: HubsActionCreators.FetchHubsFailed) =>
+                expect(data.type).toEqual(HubsActionTypes.FETCH_HUBS_FAILED)
             );
     });
 });

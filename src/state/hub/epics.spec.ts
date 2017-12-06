@@ -11,7 +11,7 @@ describe('Hub Connect Epic', () => {
         fetchMock.restore();
     });
 
-    it('should successfully connect to hub if given username', done => {
+    it('should successfully connect to hub if given username', () => {
         const expectedResponse = [{'success': {'username': 'K6Mfj3SFJ9K9UDbCtpOrwlaG7SIdWV-ZLsthiLfb'}}];
         const action$ = ActionsObservable.of(HubActionCreators.connectHubRequested('127.0.0.1'));
 
@@ -22,8 +22,6 @@ describe('Hub Connect Epic', () => {
                 (data: HubActionCreators.ConnectHubSuccessful) => {
                     expect(data.type).toEqual(HubActionTypes.CONNECT_HUB_SUCCESSFUL);
                     expect(data.payload.username).toBe('K6Mfj3SFJ9K9UDbCtpOrwlaG7SIdWV-ZLsthiLfb');
-
-                    done();
                 }
             );
     });
