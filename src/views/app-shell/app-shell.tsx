@@ -2,8 +2,8 @@ import * as React from 'react';
 import {ComponentEnhancer, compose, setDisplayName} from 'recompose';
 import {Route} from 'react-router';
 import './app-shell.scss';
-import {AppNav} from '../app-nav/app-nav';
 import {Hubs} from '../hubs/hubs';
+import {AppArea} from '../app=area/app-area';
 
 const enhance: ComponentEnhancer<{}, {}> = compose(
     setDisplayName('App-Shell'),
@@ -11,7 +11,7 @@ const enhance: ComponentEnhancer<{}, {}> = compose(
 
 const component: React.SFC = () =>
     <div className="app-shell">
-        <AppNav/>
+        <AppArea/>
         <Route exact path="/" component={Hubs}/>
         <Route path={'/hubs/:id'} render={({match: {params: {id}}}) => <p>{id}</p>}/>
     </div>;
